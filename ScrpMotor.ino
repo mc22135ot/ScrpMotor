@@ -1,6 +1,5 @@
 #include <EEPROM.h>
 #include <ScrpSlave.h>
-#include <digitalWriteFast.h>
 
 #define REDE_PIN 2
 
@@ -9,7 +8,7 @@
 #define MTR2_FWD 5
 #define MTR2_RVS 6
 
-ScrpSlave<REDE_PIN> slave(Serial, 115200, EEPROM.read(0), changeID);
+ScrpSlave slave(REDE_PIN, EEPROM.read(0), changeID);
 
 void setup(){
   slave.addCMD(2, driveMtr1);
@@ -25,23 +24,23 @@ void changeID(byte new_id){
 }
 
 boolean safeOperation(int rx_data, int& tx_data){
-  digitalWriteFast(MTR1_FWD, LOW);
-  digitalWriteFast(MTR1_RVS, LOW);
-  digitalWriteFast(MTR2_FWD, LOW);
-  digitalWriteFast(MTR2_RVS, LOW);
+  digitalWrite(MTR1_FWD, LOW);
+  digitalWrite(MTR1_RVS, LOW);
+  digitalWrite(MTR2_FWD, LOW);
+  digitalWrite(MTR2_RVS, LOW);
   return true;
 }
 
 boolean driveMtr1(int rx_data, int& tx_data){
   rx_data = constrain(rx_data, -255, 255);
   if(!rx_data){
-    digitalWriteFast(MTR1_FWD, LOW);
-    digitalWriteFast(MTR1_RVS, LOW);
+    digitalWrite(MTR1_FWD, LOW);
+    digitalWrite(MTR1_RVS, LOW);
   }else if(0 < rx_data){
-    digitalWriteFast(MTR1_RVS, LOW);
+    digitalWrite(MTR1_RVS, LOW);
     analogWrite(MTR1_FWD, rx_data);
   }else{
-    digitalWriteFast(MTR1_FWD, LOW);
+    digitalWrite(MTR1_FWD, LOW);
     analogWrite(MTR1_RVS, -rx_data);
   }
 }
@@ -49,14 +48,14 @@ boolean driveMtr1(int rx_data, int& tx_data){
 boolean driveMtr2(int rx_data, int& tx_data){
   rx_data = constrain(rx_data, -255, 255);
   if(!rx_data){
-    digitalWriteFast(MTR2_FWD, LOW);
-    digitalWriteFast(MTR2_RVS, LOW);
+    digitalWrite(MTR2_FWD, LOW);
+    digitalWrite(MTR2_RVS, LOW);
   }else if(0 < rx_data){
-    digitalWriteFast(MTR2_RVS, LOW);
-    analogWrite(MTR1_FWD, rx_data);
+    digitalWrite(MTR2_RVS, LOW);
+    analogWrite(MTR2_FWD, rx_data);
   }else{
-    digitalWriteFast(MTR2_FWD, LOW);
-    analogWrite(MTR1_RVS, -rx_data);
+    digitalWrite(MTR2_FWD, LOW);
+    analogWrite(MTR2_RVS, -rx_data);
   }
 }
 
