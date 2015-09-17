@@ -58,4 +58,3 @@ boolean driveMtr2(int rx_data, int& tx_data){
     analogWrite(MTR2_RVS, -rx_data);
   }
 }
-
