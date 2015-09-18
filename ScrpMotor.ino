@@ -24,8 +24,9 @@ void setup(){
   pinMode(MTR2_RVS, OUTPUT);
   pinMode(MTR1_LED, OUTPUT);
   pinMode(MTR2_LED, OUTPUT);
+  Serial.begin(BAUDRATE);
   slave.addCMD(2, driveMtr1);
-  slave.addCMD(3, driveMtr2);;
+  slave.addCMD(3, driveMtr2);
 }
 
 void loop(){
