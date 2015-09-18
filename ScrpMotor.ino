@@ -1,12 +1,18 @@
 #include <EEPROM.h>
 #include <ScrpSlave.h>
 
-#define REDE_PIN 2
-
-#define MTR1_FWD 5
-#define MTR1_RVS 6
-#define MTR2_FWD 5
-#define MTR2_RVS 6
+#include "pin_assign.h"
+/*
+  pin_assign.h 内で
+    REDE_PIN
+    MTR1_FWD
+    MTR1_RVS
+    MTR2_FWD
+    MTR2_RVS
+    MTR1_LED
+    MTR2_LED
+  を定義する必要があります.
+ */
 
 ScrpSlave slave(REDE_PIN, EEPROM.read(0), changeID);
 
@@ -28,6 +34,8 @@ boolean safeOperation(int rx_data, int& tx_data){
   digitalWrite(MTR1_RVS, LOW);
   digitalWrite(MTR2_FWD, LOW);
   digitalWrite(MTR2_RVS, LOW);
+  digitalWrite(MTR1_LED, LOW);
+  digitalWrite(MTR2_LED, LOW);
   return true;
 }
 
@@ -36,12 +44,15 @@ boolean driveMtr1(int rx_data, int& tx_data){
   if(!rx_data){
     digitalWrite(MTR1_FWD, LOW);
     digitalWrite(MTR1_RVS, LOW);
+    digitalWrite(MTR1_LED, LOW);
   }else if(0 < rx_data){
     digitalWrite(MTR1_RVS, LOW);
     analogWrite(MTR1_FWD, rx_data);
+    digitalWrite(MTR1_LED, HIGH);
   }else{
     digitalWrite(MTR1_FWD, LOW);
     analogWrite(MTR1_RVS, -rx_data);
+    digitalWrite(MTR1_LED, HIGH);
   }
 }
 
@@ -50,11 +61,14 @@ boolean driveMtr2(int rx_data, int& tx_data){
   if(!rx_data){
     digitalWrite(MTR2_FWD, LOW);
     digitalWrite(MTR2_RVS, LOW);
+    digitalWrite(MTR2_LED, LOW);
   }else if(0 < rx_data){
     digitalWrite(MTR2_RVS, LOW);
     analogWrite(MTR2_FWD, rx_data);
+    digitalWrite(MTR2_LED, HIGH);
   }else{
     digitalWrite(MTR2_FWD, LOW);
     analogWrite(MTR2_RVS, -rx_data);
+    digitalWrite(MTR2_LED, HIGH);
   }
 }
