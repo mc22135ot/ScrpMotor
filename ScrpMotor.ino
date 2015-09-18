@@ -17,6 +17,7 @@
 ScrpSlave slave(REDE_PIN, EEPROM.read(0), changeID);
 
 void setup(){
+  pinMode(REDE_PIN, OUTPUT);
   pinMode(MTR1_FWD, OUTPUT);
   pinMode(MTR1_RVS, OUTPUT);
   pinMode(MTR2_FWD, OUTPUT);
