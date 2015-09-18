@@ -1,7 +1,7 @@
 #include <EEPROM.h>
 #include <ScrpSlave.h>
 
-#include "pin_assign.h"
+#include "config.h"
 /*
   pin_assign.h 内で
     REDE_PIN
