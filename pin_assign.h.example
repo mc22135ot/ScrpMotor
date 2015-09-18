@@ -1,0 +1,9 @@
+#define REDE_PIN 3
+#define MTR1_FWD 4
+#define MTR1_RVS 5
+#define MTR2_FWD 6
+#define MTR2_RVS 7
+#define MTR1_LED 8
+#define MTR2_LED 9
+
+
