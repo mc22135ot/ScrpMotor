@@ -17,6 +17,12 @@
 ScrpSlave slave(REDE_PIN, EEPROM.read(0), changeID);
 
 void setup(){
+  pinMode(MTR1_FWD, OUTPUT);
+  pinMode(MTR1_RVS, OUTPUT);
+  pinMode(MTR2_FWD, OUTPUT);
+  pinMode(MTR2_RVS, OUTPUT);
+  pinMode(MTR1_LED, OUTPUT);
+  pinMode(MTR2_LED, OUTPUT);
   slave.addCMD(2, driveMtr1);
   slave.addCMD(3, driveMtr2);;
 }
