@@ -1,3 +1,4 @@
+#include <Utility.h>
 #include <EEPROM.h>
 #include <ScrpSlave.h>
 
@@ -24,6 +25,10 @@ void setup(){
   pinMode(MTR2_RVS, OUTPUT);
   pinMode(MTR1_LED, OUTPUT);
   pinMode(MTR2_LED, OUTPUT);
+  setPWMFrequency(5, PWM_DIV8);
+  setPWMFrequency(6, PWM_DIV8);
+  setPWMFrequency(10, PWM_DIV8);
+  setPWMFrequency(11, PWM_DIV8);
   Serial.begin(BAUDRATE);
   slave.addCMD(2, driveMtr1);
   slave.addCMD(3, driveMtr2);
