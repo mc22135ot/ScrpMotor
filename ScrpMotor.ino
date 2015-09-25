@@ -32,6 +32,7 @@ void setup(){
   Serial.begin(BAUDRATE);
   slave.addCMD(2, driveMtr1);
   slave.addCMD(3, driveMtr2);
+  slave.addCMD(255, safeOperation);
 }
 
 void loop(){
