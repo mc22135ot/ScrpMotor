@@ -1,6 +1,6 @@
 /*
   This file defines default settings.
-  You must change the parameters if necessary.
+  You must change these parameters if necessary.
 */
 
 #define BAUDRATE 115200
