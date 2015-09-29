@@ -1,19 +1,7 @@
 #include <Utility.h>
 #include <EEPROM.h>
 #include <ScrpSlave.h>
-
 #include "config.h"
-/*
-  pin_assign.h 内で
-    REDE_PIN
-    MTR1_FWD
-    MTR1_RVS
-    MTR2_FWD
-    MTR2_RVS
-    MTR1_LED
-    MTR2_LED
-  を定義する必要があります.
- */
 
 ScrpSlave slave(REDE_PIN, EEPROM.read(0), changeID);
 
@@ -27,7 +15,9 @@ void setup(){
   pinMode(MTR2_LED, OUTPUT);
   setPWMFrequency(5, PWM_DIV8);
   setPWMFrequency(6, PWM_DIV8);
+  setPWMFrequency(9, PWM_DIV8);
   setPWMFrequency(10, PWM_DIV8);
+  setPWMFrequency(3, PWM_DIV8);
   setPWMFrequency(11, PWM_DIV8);
   Serial.begin(BAUDRATE);
   slave.addCMD(2, driveMtr1);
