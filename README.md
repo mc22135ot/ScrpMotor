@@ -1,5 +1,9 @@
 # ScrpMotor
 
+## 使用している外部ライブラリ
+
+本ソフトウェアは[Arduino Utilityライブラリ](http://ehbtj.com/electronics/arduino-utility-library)を使用しており、インストールされていることを前提とする。
+
 ## ScrpMotorを使用したドライバの使い方
 
 ### CMD
