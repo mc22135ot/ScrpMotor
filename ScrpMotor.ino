@@ -58,6 +58,7 @@ boolean driveMtr1(int rx_data, int& tx_data){
     analogWrite(MTR1_RVS, -rx_data);
     digitalWrite(MTR1_LED, HIGH);
   }
+  return true;
 }
 
 boolean driveMtr2(int rx_data, int& tx_data){
@@ -75,4 +76,5 @@ boolean driveMtr2(int rx_data, int& tx_data){
     analogWrite(MTR2_RVS, -rx_data);
     digitalWrite(MTR2_LED, HIGH);
   }
+  return true;
 }
